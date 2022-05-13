@@ -1,0 +1,17 @@
+import pandas as pd
+import glob
+
+path = 'C:/Users/Louis Chew/pythonProject1/AprilMR/'
+filenames = glob.glob(path + "/*.xlsx")
+
+excel_list = []
+for file in filenames:
+    excel_list.append(pd.read_excel(file,sheet_name='Data Template'))
+
+# create a new dataframe to store the
+# merged excel file.
+df1 = pd.DataFrame()
+for excl_file in excel_list:
+    df1 = df1.append(excl_file)
+    print(df1)
+    df1.to_excel('Final.xlsx', index=True)
